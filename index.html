@@ -65,8 +65,8 @@
     /* Social Icons Row */
     .social-links {
       display: flex;
-      gap: 32px;            /* Increased from 20px for breathing room */
-      margin-top: 32px;     /* Increased from 24px */
+      gap: 40px;
+      margin-top: 36px;
       align-items: center;
       justify-content: center;
     }
@@ -82,28 +82,28 @@
 
     .social-link:hover {
       color: #ffffff;
-      transform: translateY(-3px) scale(1.08); /* Added slight scale-up on hover */
+      transform: translateY(-4px) scale(1.1);
     }
 
-    /* Desktop Icon Size: 40px (up from 26px) */
+    /* Desktop Icon Size: 56px */
     .social-link svg {
-      width: 40px;
-      height: 40px;
+      width: 56px;
+      height: 56px;
       fill: currentColor;
     }
 
-    /* Mobile Icon Size: 32px (up from 22px) */
+    /* Mobile Icon Size: 42px */
     @media (max-width: 600px) {
       .social-links {
         gap: 24px;
         margin-top: 24px;
       }
       .social-link svg {
-        width: 32px;
-        height: 32px;
+        width: 42px;
+        height: 42px;
       }
       .foreground-img {
-        max-height: 55vh; /* Slightly reduced so large icons fit comfortably */
+        max-height: 50vh;
       }
     }
   </style>
