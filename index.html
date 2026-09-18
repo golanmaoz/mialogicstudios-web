@@ -16,16 +16,50 @@
       overflow: hidden;
       background-color: #000;
     }
+
+    /* Layer 1: Edge-to-edge full bleed background */
     .background {
+      position: fixed;
+      inset: 0;
       width: 100vw;
       height: 100vh;
-      /* Replace 'coming-soon.png' with your exact image file name */
       background: url('bg.jpeg') no-repeat center center;
       background-size: cover;
+      z-index: 1;
+    }
+
+    /* Layer 2: Center viewport wrapper */
+    .foreground-container {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px; /* Prevents touching screen bezels on mobile */
+      z-index: 2;
+    }
+
+    /* Centered image: Always 100% visible, never cropped */
+    .foreground-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none; /* Allows clicks to pass through if needed */
     }
   </style>
 </head>
 <body>
+  <!-- Layer 1 -->
   <div class="background"></div>
+
+  <!-- Layer 2 -->
+  <div class="foreground-container">
+    <!-- Replace 'coming_soon.png' with your center image file name -->
+    <img class="foreground-img" src="logo-card.png" alt="Mialogic Studios">
+  </div>
 </body>
 </html>
