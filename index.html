@@ -10,75 +10,29 @@
       padding: 0;
       box-sizing: border-box;
     }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior-y: auto; /* Enables native browser pull-to-refresh */
+
+    html {
+      /* Allows pull-to-refresh overscroll */
+      overscroll-behavior-y: auto;
       background-color: #000;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* Pull-to-refresh spinner visual */
-    #pull-indicator {
-      position: fixed;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      transition: top 0.15s ease, transform 0.2s ease, opacity 0.2s ease;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #pull-indicator svg {
-      width: 22px;
-      height: 22px;
-      fill: #ffffff;
-      transition: transform 0.2s ease;
-    }
-
-    #pull-indicator.spinning svg {
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Layer 1: Background image */
-    .background {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('bg.jpeg') no-repeat center center;
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      /* min-height ensures mobile browsers recognize a scrollable root canvas */
+      min-height: calc(100vh + 1px);
+      background: #000 url('bg.jpeg') no-repeat center center fixed;
       background-size: cover;
-      z-index: 1;
-    }
-
-    /* Layer 2: Main center wrapper */
-    .content-wrapper {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 24px;
-      z-index: 2;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* Center image container */
@@ -87,12 +41,13 @@
       flex-direction: column;
       align-items: center;
       max-width: 90vw;
-      max-height: 80vh;
+      padding: 24px;
+      margin: auto; /* Keeps it centered vertically & horizontally */
     }
 
     .foreground-img {
       max-width: 100%;
-      max-height: 65vh;
+      max-height: 60vh;
       width: auto;
       height: auto;
       object-fit: contain;
@@ -146,77 +101,28 @@
 </head>
 <body>
 
-  <!-- Pull indicator -->
-  <div id="pull-indicator">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-    </svg>
-  </div>
+  <main class="card-container">
+    <!-- Foreground art / logo -->
+    <img class="foreground-img" src="coming_soon.png" alt="Mialogic Studios">
 
-  <!-- Layer 1: Background -->
-  <div class="background"></div>
+    <!-- Clickable Social Icons -->
+    <div class="social-links">
+      <!-- X (Twitter) -->
+      <a href="https://x.com/MialogicStudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
 
-  <!-- Layer 2: Center Content & Social Icons -->
-  <main class="content-wrapper">
-    <div class="card-container">
-      <img class="foreground-img" src="coming_soon.png" alt="Mialogic Studios">
+      <!-- Instagram -->
+      <a href="https://instagram.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
 
-      <div class="social-links">
-        <!-- X -->
-        <a href="https://x.com/MialogicStudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-      </div>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
     </div>
   </main>
 
-  <script>
-    let startY = 0;
-    let distanceY = 0;
-    const indicator = document.getElementById('pull-indicator');
-    const threshold = 75; // Pixels needed to trigger reload
-
-    window.addEventListener('touchstart', (e) => {
-      if (window.scrollY === 0) {
-        startY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (startY === 0) return;
-      const currentY = e.touches[0].clientY;
-      distanceY = currentY - startY;
-
-      if (distanceY > 10) {
-        indicator.style.opacity = '1';
-        indicator.style.top = Math.min(distanceY * 0.4, 30) + 'px';
-        indicator.querySelector('svg').style.transform = `rotate(${distanceY * 2}deg)`;
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      if (distanceY >= threshold) {
-        indicator.classList.add('spinning');
-        setTimeout(() => {
-          window.location.reload();
-        }, 200);
-      } else {
-        indicator.style.top = '-50px';
-        indicator.style.opacity = '0';
-      }
-      startY = 0;
-      distanceY = 0;
-    });
-  </script>
 </body>
 </html>
