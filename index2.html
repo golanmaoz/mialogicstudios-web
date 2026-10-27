@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mialogic Studios - Official Game Showcase</title>
+  <meta name="description" content="Explore independent worlds crafted by Mialogic Studios.">
+  
+  <!-- Fantasy RPG Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold-light: #fbe3a1;
+      --gold-mid: #c89b3c;
+      --gold-dark: #644a18;
+      --border-outer: #3a3227;
+      --bg-panel: #0d1219;
+      --gem-purple: #c359ff;
+      --gem-blue: #00d2ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #030611;
+      /* Constellation & starfield deep background */
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(26, 44, 86, 0.45) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(38, 20, 60, 0.45) 0%, transparent 40%),
+        radial-gradient(ellipse at center, #070d1e 0%, #02040a 100%);
+      background-attachment: fixed;
+      color: #e5e7eb;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      overflow-x: hidden;
+    }
+
+    /* Outer Fantasy Shrine Frame */
+    .portal-frame {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(10, 15, 23, 0.95);
+      border: 3px solid #635035;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 
+        0 0 0 1px #221b12,
+        0 0 25px rgba(0, 0, 0, 0.9),
+        inset 0 0 20px rgba(0, 0, 0, 0.85);
+      padding: 14px;
+    }
+
+    /* Inner Bevel Rim */
+    .portal-inner {
+      border: 2px solid #36291a;
+      border-radius: 14px;
+      background: #090e17;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Ornate Gems on Corners */
+    .portal-frame::before, .portal-frame::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f1a8ff, var(--gem-purple), #380757);
+      box-shadow: 0 0 12px var(--gem-purple), 0 0 2px #fff;
+      border: 2px solid #ecc97b;
+      z-index: 10;
+    }
+    .portal-frame::before { top: 6px; left: 6px; }
+    .portal-frame::after { top: 6px; right: 6px; }
+
+    /* ================= Top Navigation ================= */
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      background: linear-gradient(180deg, rgba(30, 36, 46, 0.9) 0%, rgba(15, 20, 28, 0.8) 100%);
+      border-bottom: 2px solid #4a3a25;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-crest {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(180deg, #ffffff 0%, #b0c9e8 50%, #46678a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px rgba(90, 160, 255, 0.6));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #dfd7c5;
+    }
+
+    .brand-tag {
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      color: #8f8574;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ab9e87;
+      text-decoration: none;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffd875;
+      text-shadow: 0 0 8px rgba(255, 216, 117, 0.6);
+    }
+
+    /* ================= Hero Spotlight Section ================= */
+    .hero-section {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      padding: 50px 40px;
+      background: 
+        linear-gradient(90deg, rgba(7, 10, 16, 0.85) 0%, rgba(7, 10, 16, 0.3) 60%, rgba(7, 10, 16, 0.7) 100%),
+        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border-bottom: 3px solid #4a3a25;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(180deg, #fffae8 0%, #d4a34b 60%, #684812 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: #e2dbcb;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      font-weight: 500;
+    }
+
+    /* Buttons */
+    .btn-group-primary {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 420px;
+    }
+
+    .btn-main-play {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff6d9;
+      text-decoration: none;
+      text-align: center;
+      padding: 14px 28px;
+      background: linear-gradient(180deg, #1c2e47 0%, #101c2c 100%);
+      border: 2px solid #d4a84e;
+      border-radius: 50px;
+      box-shadow: 
+        0 0 15px rgba(212, 168, 78, 0.4),
+        inset 0 0 10px rgba(0, 180, 255, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .btn-main-play:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(212, 168, 78, 0.8);
+      background: linear-gradient(180deg, #243c5e 0%, #16263c 100%);
+      color: #ffffff;
+    }
+
+    .btn-sub-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #dfd2b9;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px 14px;
+      background: linear-gradient(180deg, #26211a 0%, #14110d 100%);
+      border: 1.5px solid #6b5230;
+      border-radius: 30px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: #d4a84e;
+      color: #ffffff;
+      background: linear-gradient(180deg, #362f25 0%, #1c1813 100%);
+    }
+
+    /* ================= Section Divider ================= */
+    .divider-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 22px 10px;
+      background: linear-gradient(180deg, #181c24 0%, #0c1017 100%);
+      border-bottom: 2px solid #36291a;
+    }
+
+    .divider-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: #e5cb93;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+      text-transform: uppercase;
+    }
+
+    .gem-center {
+      margin: 0 14px;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, var(--gem-blue) 0%, #044b7a 100%);
+      border: 2px solid #ecc97b;
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px var(--gem-blue);
+    }
+
+    /* ================= Featured Games Grid ================= */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 40px 30px;
+      background: radial-gradient(circle at center, #131924 0%, #090d14 100%);
+    }
+
+    .game-card {
+      background: #0f141d;
+      border: 2px solid #483b27;
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: #d4a84e;
+      box-shadow: 0 12px 25px rgba(212, 168, 78, 0.25);
+    }
+
+    /* Art Container within Card */
+    .card-art-box {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #3b3224;
+      position: relative;
+    }
+
+    .card-art-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .game-card:hover .card-art-box img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 16px 10px 8px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .game-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fae4b5;
+      margin-bottom: 14px;
+    }
+
+    .btn-view-game {
+      display: inline-block;
+      width: 80%;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #dfd7c5;
+      text-decoration: none;
+      padding: 8px 14px;
+      background: linear-gradient(180deg, #2a2217 0%, #15110a 100%);
+      border: 1.5px solid #826638;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-view-game:hover {
+      background: linear-gradient(180deg, #423624 0%, #201a11 100%);
+      border-color: #fce3a1;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(252, 227, 161, 0.4);
+    }
+
+    /* ================= Social & Footer Section ================= */
+    .footer-bar {
+      padding: 24px;
+      background: #090c13;
+      border-top: 2px solid #36291a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .social-link {
+      color: rgba(223, 215, 197, 0.6);
+      transition: all 0.2s ease;
+      display: inline-flex;
+    }
+
+    .social-link:hover {
+      color: #ffd875;
+      transform: translateY(-3px) scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(255, 216, 117, 0.5));
+    }
+
+    .social-link svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: #6d6657;
+      letter-spacing: 1px;
+    }
+
+    /* ================= Responsive Adjustments ================= */
+    @media (max-width: 768px) {
+      .header-nav {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-section {
+        padding: 40px 20px;
+        text-align: center;
+        justify-content: center;
+      }
+      .btn-group-primary {
+        margin: 0 auto;
+      }
+      .btn-sub-row {
+        flex-direction: column;
+      }
+      .divider-title {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Ornate Portal Container -->
+  <div class="portal-frame">
+    <div class="portal-inner">
+
+      <!-- Navigation Header -->
+      <header class="header-nav">
+        <a href="#" class="brand-logo">
+          <div class="brand-crest">ML</div>
+          <div class="brand-text">
+            <span class="brand-name">MIALOGIC</span>
+            <span class="brand-tag">STUDIOS</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#" class="active">HOME</a></li>
+            <li><a href="#games">GAMES</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Hero Banner / Featured Title -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">AETHERBOUND</h1>
+          <p class="hero-tagline">
+            Explore the Skies. Forge Your Legend.<br>
+            A Narrative Action-RPG Adventure.
+          </p>
+
+          <div class="btn-group-primary">
+            <a href="#" class="btn-main-play">PLAY AETHERBOUND NOW</a>
+            <div class="btn-sub-row">
+              <a href="#" class="btn-secondary">WATCH TRAILER</a>
+              <a href="#" class="btn-secondary">WISH ON STEAM</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <div class="divider-bar" id="games">
+        <div class="gem-center"></div>
+        <h2 class="divider-title">Featured Games</h2>
+        <div class="gem-center"></div>
+      </div>
+
+      <!-- Featured Games Cards -->
+      <section class="games-grid">
+        <!-- Card 1 -->
+        <article class="game-card">
+          <div class="card-art-box">
+            <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80" alt="Aetherbound">
+          </div>
+          <div class="card-body">
+            <h3 class="game-title">AETHERBOUND</h3>
+            <a href="#" class="btn-view-game">VIEW GAME</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="game-card">
+          <div class="card-art-box">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Solar Eclipse">
+          </div>
+          <div class="card-body">
+            <h3 class="game-title">SOLAR ECLIPSE</h3>
+            <a href="#" class="btn-view-game">VIEW GAME</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="game-card">
+          <div class="card-art-box">
+            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Emberwood">
+          </div>
+          <div class="card-body">
+            <h3 class="game-title">EMBERWOOD</h3>
+            <a href="#" class="btn-view-game">VIEW GAME</a>
+          </div>
+        </article>
+      </section>
+
+      <!-- Footer & Existing Social Icons -->
+      <footer class="footer-bar" id="contact">
+        <div class="social-links">
+          <!-- X (Twitter) -->
+          <a href="https://x.com/MialogicStudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://instagram.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/mialogicstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+        <p class="copyright">&copy; 2026 Mialogic Studios. All rights reserved.</p>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>
