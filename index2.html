@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Mialogic Studios - The Crash</title>
   <meta name="description" content="The Crash - A complete offline match 3 survival game by Mialogic Studios. Play anytime, anywhere.">
   
@@ -26,6 +26,12 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      overflow-x: hidden;
+      background-color: #04070c;
     }
 
     body {
@@ -34,6 +40,7 @@
       font-family: 'Montserrat', sans-serif;
       overflow-x: hidden;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
     }
@@ -49,25 +56,25 @@
       justify-content: space-between;
       align-items: center;
       padding: 24px 60px;
-      background: linear-gradient(180deg, rgba(3, 6, 12, 0.95) 0%, rgba(3, 6, 12, 0) 100%);
+      background: linear-gradient(180deg, rgba(3, 6, 12, 0.95) 0%, rgba(3, 6, 12, 0.6) 60%, transparent 100%);
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
     }
 
     .logo-crest {
       font-family: 'Cinzel', serif;
-      font-size: 2.4rem;
+      font-size: 2.3rem;
       font-weight: 900;
       letter-spacing: -2px;
       background: linear-gradient(180deg, #ffffff 0%, #76b7ff 50%, #1f4277 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 12px rgba(0, 195, 255, 0.75));
+      filter: drop-shadow(0 0 10px rgba(0, 195, 255, 0.75));
       line-height: 1;
     }
 
@@ -79,7 +86,7 @@
 
     .logo-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: 3px;
       color: #f1f5f9;
@@ -87,7 +94,7 @@
     }
 
     .logo-sub {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 4px;
       color: #94a3b8;
@@ -95,15 +102,15 @@
 
     .nav-links {
       display: flex;
-      gap: 38px;
+      gap: 34px;
       list-style: none;
     }
 
     .nav-item a {
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 2.2px;
       color: #cad5e2;
       text-decoration: none;
       position: relative;
@@ -134,12 +141,11 @@
       min-height: 680px;
       display: flex;
       align-items: center;
-      padding: 120px 60px 70px;
+      padding: 130px 60px 80px;
       background: 
         radial-gradient(circle at 75% 45%, rgba(255, 90, 0, 0.25) 0%, transparent 40%),
         radial-gradient(circle at 85% 20%, rgba(130, 200, 255, 0.2) 0%, transparent 45%),
-        linear-gradient(90deg, rgba(3, 6, 12, 0.95) 0%, rgba(3, 6, 12, 0.8) 45%, rgba(3, 6, 12, 0.2) 80%),
-        /* Replace with your 'the_crash_hero.png' or key art */
+        linear-gradient(90deg, rgba(3, 6, 12, 0.95) 0%, rgba(3, 6, 12, 0.8) 45%, rgba(3, 6, 12, 0.25) 85%),
         url('hero_the_crash.jpg') center right / cover no-repeat;
     }
 
@@ -152,18 +158,18 @@
     .out-now-badge {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
       letter-spacing: 4px;
       color: #ffbe42;
       text-shadow: 0 0 12px rgba(255, 174, 0, 0.7);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .badge-line {
-      width: 45px;
+      width: 40px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #ffbe42);
       position: relative;
@@ -172,18 +178,18 @@
       background: linear-gradient(90deg, #ffbe42, transparent);
     }
     .badge-diamond {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     /* "THE CRASH" Chiseled Stone Title */
     .main-game-title {
       font-family: 'Rubik', 'Cinzel', sans-serif;
-      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-size: clamp(2.6rem, 7.5vw, 5.5rem);
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 22px;
+      line-height: 1.05;
+      margin-bottom: 20px;
       color: #f1f3f7;
       text-shadow: 
         0 2px 0 #9ca3af,
@@ -191,6 +197,7 @@
         0 6px 0 #4b5563,
         0 8px 12px rgba(0, 0, 0, 0.9),
         0 0 25px rgba(255, 255, 255, 0.2);
+      word-break: keep-all;
     }
 
     /* Subtext features */
@@ -198,7 +205,7 @@
       font-size: 1.15rem;
       line-height: 1.7;
       color: #d1d5db;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
       margin-bottom: 34px;
       font-weight: 600;
     }
@@ -209,7 +216,7 @@
       text-shadow: 0 0 8px rgba(255, 183, 43, 0.4);
     }
 
-    /* Fiery Hexagonal Android CTA Button */
+    /* Fiery Android CTA Button */
     .btn-android {
       display: inline-flex;
       align-items: center;
@@ -217,7 +224,7 @@
       text-decoration: none;
       padding: 16px 36px;
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 800;
       letter-spacing: 2px;
       color: #ffffff;
@@ -228,7 +235,7 @@
       box-shadow: 
         0 0 22px var(--fire-glow),
         inset 0 0 14px rgba(255, 120, 0, 0.5);
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: all 0.25s ease;
     }
 
     .btn-android::before {
@@ -241,7 +248,7 @@
     }
 
     .btn-android:hover {
-      transform: translateY(-3px) scale(1.02);
+      transform: translateY(-2px) scale(1.02);
       border-color: #ffa233;
       box-shadow: 
         0 0 35px rgba(255, 110, 0, 0.9),
@@ -249,11 +256,16 @@
       color: #fff9e6;
     }
 
+    .btn-android:active {
+      transform: scale(0.97);
+    }
+
     .android-icon {
-      width: 26px;
-      height: 26px;
+      width: 25px;
+      height: 25px;
       fill: #ffffff;
       filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+      flex-shrink: 0;
     }
 
     /* ================= 3. ORNATE FANTASY DIVIDER ================= */
@@ -287,22 +299,21 @@
     .divider-gem-left,
     .divider-gem-right {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: radial-gradient(circle at 35% 35%, #b5f5ff 0%, #0099ff 60%, #002e6b 100%);
       transform: rotate(45deg);
       border: 2px solid #7de7ff;
-      box-shadow: 0 0 14px rgba(0, 180, 255, 0.8);
+      box-shadow: 0 0 12px rgba(0, 180, 255, 0.8);
     }
-    .divider-gem-left { left: 15px; }
-    .divider-gem-right { right: 15px; }
+    .divider-gem-left { left: 16px; }
+    .divider-gem-right { right: 16px; }
 
     /* ================= 4. OUR GAMES / EMBER SECTION ================= */
     .games-section {
       position: relative;
       flex-grow: 1;
       padding: 60px 40px 90px;
-      /* Dark cracked stone background */
       background: 
         radial-gradient(circle at 50% 30%, rgba(18, 25, 38, 0.6) 0%, rgba(4, 7, 12, 0.98) 100%),
         radial-gradient(circle at 20% 80%, rgba(255, 70, 0, 0.08) 0%, transparent 40%),
@@ -314,7 +325,6 @@
       overflow: hidden;
     }
 
-    /* Live floating embers canvas */
     #ember-canvas {
       position: absolute;
       top: 0;
@@ -351,10 +361,10 @@
       background: linear-gradient(90deg, #748ba7, transparent);
     }
 
-    /* Game Card */
+    /* Game Showcase Card */
     .game-showcase-container {
       width: 100%;
-      max-width: 580px;
+      max-width: 560px;
       z-index: 5;
       margin-right: auto;
       margin-left: 5vw;
@@ -376,16 +386,20 @@
     }
 
     .game-framed-card:hover {
-      transform: translateY(-6px) scale(1.01);
+      transform: translateY(-5px);
       border-color: #d19a3b;
       box-shadow: 
         0 18px 40px rgba(0, 0, 0, 0.95),
         0 0 25px rgba(255, 160, 0, 0.35);
     }
 
+    .game-framed-card:active {
+      transform: scale(0.98);
+    }
+
     .card-inner-art {
       width: 100%;
-      height: 310px;
+      aspect-ratio: 16 / 10;
       border-radius: 8px;
       overflow: hidden;
       position: relative;
@@ -399,7 +413,6 @@
       display: block;
     }
 
-    /* Corner ornate brackets for card */
     .card-corner {
       position: absolute;
       width: 16px;
@@ -426,10 +439,12 @@
     .social-btn {
       width: 44px;
       height: 44px;
+      min-width: 44px;
+      min-height: 44px;
       border-radius: 50%;
       border: 1.5px solid rgba(255, 255, 255, 0.6);
-      background: rgba(10, 15, 24, 0.7);
-      backdrop-filter: blur(4px);
+      background: rgba(10, 15, 24, 0.75);
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -447,52 +462,148 @@
     .social-btn:hover {
       border-color: #ffb700;
       color: #ffb700;
-      transform: translateY(-4px) scale(1.1);
+      transform: translateY(-3px) scale(1.1);
       box-shadow: 0 0 14px rgba(255, 183, 0, 0.6);
     }
 
-    /* ================= RESPONSIVE ================= */
+    .social-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* ================= RESPONSIVE / MOBILE ENHANCEMENTS ================= */
     @media (max-width: 900px) {
       .navbar {
-        padding: 20px 24px;
-      }
-      .hero-section {
-        padding: 110px 24px 60px;
-        background-position: center;
+        padding: 18px 24px;
       }
       .game-showcase-container {
         margin: 0 auto;
       }
       .social-dock {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 40px;
+        position: static;
+        margin-top: 50px;
         justify-content: center;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 16px 20px;
+      }
+      .logo-crest {
+        font-size: 1.85rem;
+      }
+      .logo-title {
+        font-size: 1.05rem;
+        letter-spacing: 2px;
+      }
+      .logo-sub {
+        font-size: 0.62rem;
+        letter-spacing: 3px;
+      }
       .nav-links {
-        gap: 18px;
+        gap: 16px;
       }
       .nav-item a {
         font-size: 0.8rem;
+        letter-spacing: 1.5px;
       }
+
+      /* Hero Mobile Focus: Centered with readable dark backdrop */
+      .hero-section {
+        min-height: 85vh;
+        min-height: 85dvh;
+        padding: 115px 20px 60px;
+        background-position: 70% center;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(3, 6, 12, 0.68) 0%, rgba(3, 6, 12, 0.92) 85%);
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
       .main-game-title {
-        font-size: 2.8rem;
+        font-size: clamp(2.3rem, 11.5vw, 3.8rem);
+        letter-spacing: 2px;
+        margin-bottom: 16px;
       }
+
       .game-features {
-        font-size: 1rem;
+        font-size: 1.02rem;
+        line-height: 1.6;
+        margin-bottom: 28px;
+        max-width: 420px;
       }
+
       .btn-android {
         width: 100%;
+        max-width: 320px;
         justify-content: center;
-        padding: 14px 20px;
+        padding: 15px 20px;
         font-size: 1rem;
       }
-      .card-inner-art {
-        height: 220px;
+
+      .games-section {
+        padding: 50px 18px 70px;
+      }
+
+      .section-title {
+        font-size: 1.45rem;
+        letter-spacing: 3px;
+        gap: 10px;
+        margin-bottom: 35px;
+      }
+
+      .title-flourish {
+        width: 25px;
+      }
+
+      .social-dock {
+        margin-top: 40px;
+        gap: 18px;
+        padding-bottom: env(safe-area-inset-bottom, 15px);
+      }
+    }
+
+    /* Smallest Mobile Displays (e.g. 320px - 380px) */
+    @media (max-width: 380px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 16px;
+      }
+      .hero-section {
+        padding-top: 135px;
+      }
+      .main-game-title {
+        font-size: 2.1rem;
+      }
+      .game-features {
+        font-size: 0.92rem;
+      }
+      .out-now-badge {
+        font-size: 0.92rem;
+      }
+      .badge-line {
+        width: 24px;
+      }
+      .social-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
       }
     }
   </style>
@@ -537,7 +648,7 @@
         No ADS no Paywalls
       </p>
 
-      <!-- Google Play CTA (Insert your store URL in href) -->
+      <!-- Google Play CTA -->
       <a href="https://play.google.com/store/apps/details?id=com.mialogicstudios.thecrash" target="_blank" rel="noopener noreferrer" class="btn-android">
         <svg class="android-icon" viewBox="0 0 24 24">
           <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993 0 .5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.997-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.412 13.8533 8.1 12 8.1s-3.5902.312-5.1365.8502L4.8412 5.4468a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.997 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
@@ -565,14 +676,13 @@
     </h2>
 
     <div class="game-showcase-container">
-      <a href="#" class="game-framed-card">
+      <a href="https://play.google.com/store/apps/details?id=com.mialogicstudios.thecrash" target="_blank" rel="noopener noreferrer" class="game-framed-card">
         <div class="card-corner corner-tl"></div>
         <div class="card-corner corner-tr"></div>
         <div class="card-corner corner-bl"></div>
         <div class="card-corner corner-br"></div>
         
         <div class="card-inner-art">
-          <!-- Put your card artwork image here (e.g. card_the_crash.png) -->
           <img src="hero_the_crash.jpg" alt="The Crash - Offline Match 3">
         </div>
       </a>
@@ -602,31 +712,32 @@
     </div>
   </section>
 
-  <!-- Floating Embers Animation Script -->
+  <!-- Optimized Floating Embers Script -->
   <script>
     const canvas = document.getElementById('ember-canvas');
     const ctx = canvas.getContext('2d');
 
     let width, height;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 20 : 45;
+
     function resize() {
       width = canvas.width = canvas.parentElement.offsetWidth;
       height = canvas.height = canvas.parentElement.offsetHeight;
     }
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
     resize();
 
     const particles = [];
-    const particleCount = 45;
-
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 2.5 + 1,
-        speedY: -(Math.random() * 0.8 + 0.3),
-        speedX: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 1,
+        speedY: -(Math.random() * 0.7 + 0.3),
+        speedX: (Math.random() - 0.5) * 0.4,
         opacity: Math.random() * 0.8 + 0.2,
-        fadeSpeed: Math.random() * 0.008 + 0.003
+        fadeSpeed: Math.random() * 0.007 + 0.003
       });
     }
 
@@ -646,9 +757,13 @@
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, ${Math.floor(100 + Math.random() * 80)}, 0, ${p.opacity})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = 'rgba(255, 120, 0, 0.8)';
+        ctx.fillStyle = `rgba(255, ${Math.floor(100 + Math.random() * 70)}, 0, ${p.opacity})`;
+        
+        // Lightweight blur for mobile battery & GPU efficiency
+        if (!isMobile) {
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = 'rgba(255, 120, 0, 0.7)';
+        }
         ctx.fill();
       });
 
